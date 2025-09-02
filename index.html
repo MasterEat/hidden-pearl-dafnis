@@ -77,6 +77,14 @@
     .gallery-grid img{width:100%; height:240px; object-fit:cover; display:block; transition: transform .35s ease}
     .gallery-grid a:focus img, .gallery-grid a:hover img{transform: scale(1.04)}
 
+    /* Lightbox */
+    .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; z-index:100}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:92vw; max-height:84vh; border-radius:12px; box-shadow:var(--shadow)}
+    .lb-controls{position:absolute; inset-inline:0; top:50%; transform:translateY(-50%); display:flex; justify-content:space-between; padding:0 24px}
+    .lb-btn{background:#ffffff; border:0; border-radius:999px; padding:10px 14px; cursor:pointer; font-weight:800}
+    .lb-close{position:absolute; top:16px; right:16px; background:#fff; border:0; border-radius:999px; padding:8px 12px; cursor:pointer; font-weight:800}
+
     /* FAQs */
     .faqs{display:grid; grid-template-columns:1fr; gap:12px}
     details{background:var(--card); border-radius:14px; padding:16px 18px; box-shadow: var(--shadow)}
@@ -195,7 +203,7 @@
     <div class="container">
       <h2 id="photos" class="section-title">Φωτογραφίες</h2>
       <p class="section-sub">Ρεαλιστικές εικόνες του χώρου – έτοιμες για εντυπωσιασμό.</p>
-      <div class="gallery-grid">
+        <div class="gallery-grid" id="gal">
         <!-- Replace src with your photos (keep width/height for CLS) -->
         <figure>
           <a href="images/1.jpg" target="_blank" rel="noopener">
@@ -249,22 +257,6 @@
           <p>Δημόσιος δωρεάν χώρος στάθμευσης στη γειτονιά — συνήθως εύκολος.</p>
         </details>
         <details>
-          <summary>Πώς γίνεται η κράτηση;</summary>
-          <p>Μέσω Airbnb link (κουμπί «Κλείσε Διαμονή») ή με απευθείας επικοινωνία.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-  <!-- LIGHTBOX OVERLAY -->
-  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
-    <button class="lb-close" aria-label="Κλείσιμο" id="lbClose">×</button>
-    <img id="lbImg" alt="Προβολή εικόνας" />
-    <div class="lb-controls">
-      <button class="lb-btn" id="lbPrev" aria-label="Προηγούμενη">‹</button>
-      <button class="lb-btn" id="lbNext" aria-label="Επόμενη">›</button>
-    </div>
-  </div>
-  <!-- DEV SETTINGS -->
-  <div class="settings" id="settings"></div>
+
 </body>
 </html>
