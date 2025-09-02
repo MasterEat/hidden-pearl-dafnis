@@ -71,11 +71,18 @@
     .feature{background:var(--card); padding:18px; border-radius:16px; box-shadow: var(--shadow)}
     .feature b{display:block; margin-bottom:6px}
 
-    /* Gallery */
-    .gallery-grid{display:grid; grid-template-columns: repeat(3,1fr); gap:12px}
-    .gallery-grid figure{margin:0; overflow:hidden; border-radius:14px; background:#fff; box-shadow:var(--shadow)}
-    .gallery-grid img{width:100%; height:240px; object-fit:cover; display:block; transition: transform .35s ease}
-    .gallery-grid a:focus img, .gallery-grid a:hover img{transform: scale(1.04)}
+    /* Gallery - Carousel */
+    .gallery-carousel{position:relative}
+    .carousel-track{display:flex; transition:transform .4s ease; overflow:hidden}
+    .carousel-track figure{flex:0 0 100%; margin:0; overflow:hidden; border-radius:14px; background:#fff; box-shadow:var(--shadow)}
+    .carousel-track img{width:100%; height:240px; object-fit:cover; display:block}
+    .carousel-btn{position:absolute; top:50%; transform:translateY(-50%); border:0; background:#fff; width:36px; height:36px; border-radius:999px; box-shadow:var(--shadow); cursor:pointer; display:flex; align-items:center; justify-content:center}
+    .carousel-btn:focus{outline:none; box-shadow:0 0 0 3px var(--ring)}
+    .carousel-btn.prev{left:8px}
+    .carousel-btn.next{right:8px}
+    .carousel-dots{display:flex; gap:6px; justify-content:center; margin-top:12px}
+    .carousel-dots button{width:8px; height:8px; border-radius:999px; border:0; background:var(--muted); opacity:.4; cursor:pointer}
+    .carousel-dots button.active{opacity:1; background:var(--btn)}
 
     /* Lightbox */
     .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; z-index:100}
@@ -104,13 +111,11 @@
     @media (max-width: 920px){
       .hero .wrap{grid-template-columns: 1fr}
       .features{grid-template-columns: 1fr 1fr}
-      .gallery-grid{grid-template-columns: 1fr 1fr}
       .hero-card{order:-1}
     }
     @media (max-width: 640px){
       nav ul{display:none}
       .features{grid-template-columns: 1fr}
-      .gallery-grid{grid-template-columns: 1fr}
     }
   </style>
 </head>
@@ -203,38 +208,43 @@
     <div class="container">
       <h2 id="photos" class="section-title">Φωτογραφίες</h2>
       <p class="section-sub">Ρεαλιστικές εικόνες του χώρου – έτοιμες για εντυπωσιασμό.</p>
-        <div class="gallery-grid" id="gal">
-        <!-- Replace src with your photos (keep width/height for CLS) -->
-        <figure>
-          <a href="images/1.jpg" target="_blank" rel="noopener">
-            <img src="images/1.jpg" alt="Σαλόνι με άνετο καναπέ" loading="lazy" width="800" height="600" />
-          </a>
-        </figure>
-        <figure>
-          <a href="images/2.jpg" target="_blank" rel="noopener">
-            <img src="images/2.jpg" alt="Υπνοδωμάτιο με φυσικό φως" loading="lazy" width="800" height="600" />
-          </a>
-        </figure>
-        <figure>
-          <a href="images/3.jpg" target="_blank" rel="noopener">
-            <img src="images/3.jpg" alt="Κουζίνα πλήρως εξοπλισμένη" loading="lazy" width="800" height="600" />
-          </a>
-        </figure>
-        <figure>
-          <a href="images/4.jpg" target="_blank" rel="noopener">
-            <img src="images/4.jpg" alt="Καθαρό και μοντέρνο μπάνιο" loading="lazy" width="800" height="600" />
-          </a>
-        </figure>
-        <figure>
-          <a href="images/5.jpg" target="_blank" rel="noopener">
-            <img src="images/5.jpg" alt="Λεπτομέρειες διακόσμησης" loading="lazy" width="800" height="600" />
-          </a>
-        </figure>
-        <figure>
-          <a href="images/6.jpg" target="_blank" rel="noopener">
-            <img src="images/6.jpg" alt="Μπαλκόνι με θέα στη γειτονιά" loading="lazy" width="800" height="600" />
-          </a>
-        </figure>
+      <div class="gallery-carousel" id="gal">
+        <button class="carousel-btn prev" aria-label="Previous photo">&#10094;</button>
+        <div class="carousel-track">
+          <!-- Replace src with your photos (keep width/height for CLS) -->
+          <figure>
+            <a href="images/1.jpg" target="_blank" rel="noopener">
+              <img src="images/1.jpg" alt="Σαλόνι με άνετο καναπέ" loading="lazy" width="800" height="600" />
+            </a>
+          </figure>
+          <figure>
+            <a href="images/2.jpg" target="_blank" rel="noopener">
+              <img src="images/2.jpg" alt="Υπνοδωμάτιο με φυσικό φως" loading="lazy" width="800" height="600" />
+            </a>
+          </figure>
+          <figure>
+            <a href="images/3.jpg" target="_blank" rel="noopener">
+              <img src="images/3.jpg" alt="Κουζίνα πλήρως εξοπλισμένη" loading="lazy" width="800" height="600" />
+            </a>
+          </figure>
+          <figure>
+            <a href="images/4.jpg" target="_blank" rel="noopener">
+              <img src="images/4.jpg" alt="Καθαρό και μοντέρνο μπάνιο" loading="lazy" width="800" height="600" />
+            </a>
+          </figure>
+          <figure>
+            <a href="images/5.jpg" target="_blank" rel="noopener">
+              <img src="images/5.jpg" alt="Λεπτομέρειες διακόσμησης" loading="lazy" width="800" height="600" />
+            </a>
+          </figure>
+          <figure>
+            <a href="images/6.jpg" target="_blank" rel="noopener">
+              <img src="images/6.jpg" alt="Μπαλκόνι με θέα στη γειτονιά" loading="lazy" width="800" height="600" />
+            </a>
+          </figure>
+        </div>
+        <button class="carousel-btn next" aria-label="Next photo">&#10095;</button>
+        <div class="carousel-dots" aria-hidden="true"></div>
       </div>
     </div>
   </section>
@@ -262,4 +272,31 @@
 
 
 </body>
+<script>
+  (function(){
+    const carousel=document.querySelector('#gal');
+    if(!carousel) return;
+    const track=carousel.querySelector('.carousel-track');
+    const slides=Array.from(track.children);
+    const prev=carousel.querySelector('.carousel-btn.prev');
+    const next=carousel.querySelector('.carousel-btn.next');
+    const dotsNav=carousel.querySelector('.carousel-dots');
+    slides.forEach((_,i)=>{
+      const btn=document.createElement('button');
+      if(i===0) btn.classList.add('active');
+      dotsNav.appendChild(btn);
+      btn.addEventListener('click',()=>goToSlide(i));
+    });
+    const dots=Array.from(dotsNav.children);
+    let index=0;
+    function goToSlide(i){
+      index=(i+slides.length)%slides.length;
+      track.style.transform=`translateX(-${index*100}%)`;
+      dots.forEach(d=>d.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+    prev.addEventListener('click',()=>goToSlide(index-1));
+    next.addEventListener('click',()=>goToSlide(index+1));
+  })();
+</script>
 </html>
